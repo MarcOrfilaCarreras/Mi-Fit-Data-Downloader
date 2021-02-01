@@ -30,6 +30,6 @@ Or if you prefer, it **can be changed** to another directory by editing the foll
 ## ⚙️ Settings
 In order for the program to be able to log into the Mi-Fit account, it is necessary to enter the email and password in their corresponding files.
 - The mail in the file **mail_mi_fit.txt**
-- The mail in the file **password_mi_fit.txt**
+- The password in the file **password_mi_fit.txt**
 
 This will allow the program to log in automatically.
