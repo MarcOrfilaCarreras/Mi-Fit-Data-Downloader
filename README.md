@@ -1,3 +1,4 @@
+
 # Mi-Fit Data Downloader
 
 This program is still in **BETA**, which means that it **does not** include all the functionalities yet.
@@ -34,3 +35,23 @@ In order for the program to be able to log into the Mi-Fit account, it is necess
 - The password in the file **password_mi_fit.txt**
 
 This will allow the program to log in automatically.
+
+You can choose what data you want to be downloaded. You just have to comment out the data you don't want:
+
+    select_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//img[@alt='USER']")))
+	select_button.click()
+
+	select_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//img[@alt='ACTIVITY']")))
+	select_button.click()
+
+	select_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//img[@alt='SLEEP']")))
+	select_button.click()
+
+	select_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//img[@alt='HEARTRATE']")))
+	select_button.click()
+
+	select_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//img[@alt='BODY']")))
+	select_button.click()
+
+	select_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//img[@alt='SPORT']")))
+	select_button.click()
