@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 #We open the website
-driver = webdriver.Chrome("C:/Users/marco/chromedriver.exe")
+driver = webdriver.Chrome("C:/Users/your-user/your-driver.exe")
 driver.get("https://mifit.huami.com/t/account_mifit")
 
 wait = WebDriverWait(driver, 10)
