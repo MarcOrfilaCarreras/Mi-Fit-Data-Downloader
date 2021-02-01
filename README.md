@@ -12,6 +12,7 @@ This program is still in **BETA**, which means that it **does not** include all 
 To start using the program, it is necessary to meet the following requirements:
 - You need to have Python installed (Tested with **version 3.9**)
 - You need to have Selenium installed
+- You need to have Datetime installed
 - You need to have a Mi-Fit Account
 - You need to have a Gmail Account
 
