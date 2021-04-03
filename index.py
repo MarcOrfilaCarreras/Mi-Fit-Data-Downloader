@@ -176,37 +176,37 @@ def startSelenium():
 #########################################################################################################################
 
 # we create the widgets with their variables
-labelTitle = tkinter.Label(master, text = "Mi Fit Data Downloader", font = ("Helvetica", 16, "bold"))
+labelTitle = tkinter.Label(master, text = "Mi-Fit Data Downloader", font = ("Helvetica", 16, "bold"))
 labelOptions = tkinter.Label(master, text = "Options:", font = ("Helvetica", 12, "bold"))
 
 global variablePersonalInformation
 variablePersonalInformation = IntVar()
-labelPersonalInformation = tkinter.Checkbutton(master, text = "Datos Personales", font = ("Helvetica", 12), variable = variablePersonalInformation)
+labelPersonalInformation = tkinter.Checkbutton(master, text = "Personal Information", font = ("Helvetica", 12), variable = variablePersonalInformation)
 labelPersonalInformation.select()
 
 global variableActivity
 variableActivity = IntVar()
-labelActivity = tkinter.Checkbutton(master, text = "Actividad", font = ("Helvetica", 12), variable = variableActivity)
+labelActivity = tkinter.Checkbutton(master, text = "Activity", font = ("Helvetica", 12), variable = variableActivity)
 labelActivity.select()
 
 global variableSleeping
 variableSleeping = IntVar()
-labelSleeping = tkinter.Checkbutton(master, text = "Sueño", font = ("Helvetica", 12), variable = variableSleeping)
+labelSleeping = tkinter.Checkbutton(master, text = "Sleeping", font = ("Helvetica", 12), variable = variableSleeping)
 labelSleeping.select()
 
 global variableHeartRate
 variableHeartRate = IntVar()
-labelHeartRate = tkinter.Checkbutton(master, text = "Ritmo Cardíaco", font = ("Helvetica", 12), variable = variableHeartRate)
+labelHeartRate = tkinter.Checkbutton(master, text = "Heart Rate", font = ("Helvetica", 12), variable = variableHeartRate)
 labelHeartRate.select()
 
 global variableBodyFat
 variableBodyFat = IntVar()
-labelBodyFat = tkinter.Checkbutton(master, text = "Grasa Corporal", font = ("Helvetica", 12), variable = variableBodyFat)
+labelBodyFat = tkinter.Checkbutton(master, text = "Body Fat", font = ("Helvetica", 12), variable = variableBodyFat)
 labelBodyFat.select()
 
 global variableTraining
 variableTraining = IntVar()
-labelTraining = tkinter.Checkbutton(master, text = "Entrenamientos", font = ("Helvetica", 12), variable = variableTraining)
+labelTraining = tkinter.Checkbutton(master, text = "Training", font = ("Helvetica", 12), variable = variableTraining)
 labelTraining.select()
 
 labelMail = tkinter.Label(master, text = "Mail:", font = ("Helvetica", 12, "bold"))
