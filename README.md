@@ -31,4 +31,6 @@ You will have to follow these steps every time you want to download the data. Un
 
 ![enter image description here](https://raw.githubusercontent.com/MarcOrfilaCarreras/Mi-Fit-Data-Downloader/main/_repository/Mi-Fit%20Data%20Downloader_Settings.PNG)
 
-This will **save** the data forever.
+This will **save** the data forever. Example:
+
+![enter image description here](https://raw.githubusercontent.com/MarcOrfilaCarreras/Mi-Fit-Data-Downloader/main/_repository/Mi-Fit%20Data%20Downloader_Example.gif)
