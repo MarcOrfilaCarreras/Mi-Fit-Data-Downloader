@@ -2,6 +2,8 @@
 # https://github.com/MarcOrfilaCarreras/Mi-Fit-Data-Downloader
 import tkinter
 from tkinter import IntVar
+from tkinter import PhotoImage
+from tkinter.ttk import *
 import time
 from datetime import datetime
 from selenium import webdriver
@@ -16,7 +18,10 @@ master = tkinter.Tk()
 master.geometry("500x500")
 master.resizable(width = 0, height = 0)
 
-master.title("Mi Fit Data Downloader")
+master.title("Mi-Fit Data Downloader")
+
+logo = PhotoImage(file = 'config/Logo.png')
+master.iconphoto(False, logo)
 
 # receive the mail and password
 def getInformation():
@@ -46,6 +51,122 @@ def boxValues():
 
     startSelenium()
 
+#we change the text in the mail input
+def setInputMiFitMail(text):
+    inputMiFitMailText.set(text)
+
+inputMiFitMailText = tkinter.StringVar()
+
+#we change the text in the password input
+def setInputMiFitPassword(text):
+    inputMiFitPasswordText.set(text)
+
+inputMiFitPasswordText = tkinter.StringVar()
+
+#we change the text in the web driver input
+def setInputWebDriverDirectory(text):
+    inputWebDriverDirectoryText.set(text)
+
+inputWebDriverDirectoryText = tkinter.StringVar()
+
+#we save the configuration
+def saveConfiguration():
+    #we erase the content
+    miFitMail = open("config/mi_fit_mail.txt","r+")
+    miFitMail.truncate(0)
+    miFitMail.close()
+
+    miFitPassword = open("config/mi_fit_password.txt","r+")
+    miFitPassword.truncate(0)
+    miFitPassword.close()
+
+    webDriverDirectory = open("config/web_driver_directory.txt","r+")
+    webDriverDirectory.truncate(0)
+    webDriverDirectory.close()
+
+    #we write the new content
+    global miFitMailNew
+    miFitMail = open("config/mi_fit_mail.txt","a")
+    miFitMailNew = inputMiFitMailText.get()
+    miFitMail.write(miFitMailNew)
+    miFitMail.close()
+
+    global miFitPasswordNew
+    miFitPassword = open("config/mi_fit_password.txt","a")
+    miFitPasswordNew = inputMiFitPasswordText.get()
+    miFitPassword.write(miFitPasswordNew)
+    miFitPassword.close()
+
+    global webDriverDirectoryNew
+    webDriverDirectory = open("config/web_driver_directory.txt", "a")
+    webDriverDirectoryNew = inputWebDriverDirectoryText.get()
+    webDriverDirectory.write(webDriverDirectoryNew)
+    webDriverDirectory.close()
+
+#we open the configuration window
+def openConfiguration():
+    windowConfiguration = tkinter.Toplevel(master)
+    windowConfiguration.geometry("500x500")
+    windowConfiguration.resizable(width = 0, height = 0)
+    windowConfiguration.title("Mi-Fit Data Downloader: Settings")
+
+    logo = PhotoImage(file = 'config/Logo.png')
+    windowConfiguration.iconphoto(False, logo)
+
+    #input text for mail
+    miFitMail = open("config/mi_fit_mail.txt", "r")
+    miFitMailText = miFitMail.read()
+    setInputMiFitMail(miFitMailText)
+    miFitMail.close()
+
+    #input text for password
+    miFitPassword = open("config/mi_fit_password.txt", "r")
+    miFitPasswordText = miFitPassword.read()
+    setInputMiFitPassword(miFitPasswordText)
+    miFitPassword.close()
+
+    #input text for web driver
+    webDriverDirectory = open("config/web_driver_directory.txt", "r")
+    webDriverDirectoryText = webDriverDirectory.read()
+    setInputWebDriverDirectory(webDriverDirectoryText)
+    webDriverDirectory.close()
+
+    # we create the widgets
+    labelTitleConfiguration = tkinter.Label(windowConfiguration, text = "Mi-Fit Data Downloader: Settings", font = ("Helvetica", 16, "bold"))
+
+    labelConfigurationMail = tkinter.Label(windowConfiguration, text = "Mail:", font = ("Helvetica", 12, "bold"))
+    inputConfigurationMail = tkinter.Entry(windowConfiguration, font = ("Helvetica", 12), textvariable  = inputMiFitMailText)
+
+    labelConfigurationPassword = tkinter.Label(windowConfiguration, text = "Password:", font = ("Helvetica", 12, "bold"))
+    inputConfigurationPassword = tkinter.Entry(windowConfiguration, font = ("Helvetica", 12), textvariable  = inputMiFitPasswordText)
+
+    labelConfigurationDriver = tkinter.Label(windowConfiguration, text = "Web Driver:", font = ("Helvetica", 12, "bold"))
+    inputConfigurationDriver = tkinter.Entry(windowConfiguration, font = ("Helvetica", 12), textvariable  = inputWebDriverDirectoryText)
+
+    buttonConfiguration = tkinter.Button(windowConfiguration, text = "Save", font = ("Helvetica", 12), command = saveConfiguration)
+
+    labelCreator = tkinter.Label(windowConfiguration, text = "Marc Orfila Carreras", font = ("Helvetica", 8, "bold"), fg = "grey")
+
+    labelLink = tkinter.Label(windowConfiguration, text = "https://github.com/MarcOrfilaCarreras/Mi-Fit-Data-Downloader", font = ("Helvetica", 8, "bold"), fg = "grey")
+
+
+    # widget position
+    labelTitleConfiguration.pack(pady = 20)
+    labelConfigurationMail.place(x = 88, y = 60)
+    inputConfigurationMail.place(x = 88, y = 95, height = 20, width = 310)
+
+    labelConfigurationPassword.place(x = 88, y = 135)
+    inputConfigurationPassword.place(x = 88, y = 170, height = 20, width = 310)
+    
+    labelConfigurationDriver.place(x = 88, y = 205)
+    inputConfigurationDriver.place(x = 88, y = 240, height = 20, width = 310)
+
+    labelLink.pack(side = tkinter.BOTTOM)
+    labelCreator.pack(side = tkinter.BOTTOM)
+
+    buttonConfiguration.place(x = 190, y = 390, height = 30, width = 120)
+
+
 #########################################################################################################################
 #########################################################################################################################
 
@@ -55,7 +176,10 @@ def startSelenium():
     day = now.day
 
     #We open the website
-    driver = webdriver.Chrome("C:/Users/marco/chromedriver.exe")
+    webDriver = open("config/web_driver_directory.txt", "r")
+
+    driver = webdriver.Chrome(webDriver.read())
+    driver.set_window_position(100000, 100000, windowHandle ='current')
     driver.get("https://mifit.huami.com/t/account_mifit")
 
     wait = WebDriverWait(driver, 10)
@@ -143,13 +267,13 @@ def startSelenium():
     select.send_keys(mail_mi_account)
 
     #We save the code in a file
-    code_mi_fit = open("code_mi_fit.txt","w")
+    code_mi_fit = open("config/code_mi_fit.txt","w")
     for elem in driver.find_elements_by_xpath('.//span'):
         code_mi_fit.write(elem.text)
     code_mi_fit.close()
 
     #We read the code from the file
-    code_mi_fit = open("code_mi_fit.txt","r")
+    code_mi_fit = open("config/code_mi_fit.txt","r")
     useless = code_mi_fit.read(6)
     code1 = code_mi_fit.read(7)
     code2 = code_mi_fit.read(8)
@@ -174,6 +298,25 @@ def startSelenium():
 
 #########################################################################################################################
 #########################################################################################################################
+
+#we read the data from the files
+#input text for mail
+miFitMail = open("config/mi_fit_mail.txt", "r")
+miFitMailText = miFitMail.read()
+setInputMiFitMail(miFitMailText)
+miFitMail.close()
+
+#input text for mail
+miFitPassword = open("config/mi_fit_password.txt", "r")
+miFitPasswordText = miFitPassword.read()
+setInputMiFitPassword(miFitPasswordText)
+miFitPassword.close()
+
+#input text for web driver
+webDriverDirectory = open("config/web_driver_directory.txt", "r")
+webDriverDirectoryText = webDriverDirectory.read()
+setInputWebDriverDirectory(webDriverDirectoryText)
+webDriverDirectory.close()
 
 # we create the widgets with their variables
 labelTitle = tkinter.Label(master, text = "Mi-Fit Data Downloader", font = ("Helvetica", 16, "bold"))
@@ -210,12 +353,14 @@ labelTraining = tkinter.Checkbutton(master, text = "Training", font = ("Helvetic
 labelTraining.select()
 
 labelMail = tkinter.Label(master, text = "Mail:", font = ("Helvetica", 12, "bold"))
-inputMail = tkinter.Entry(master, font = ("Helvetica", 12))
+inputMail = tkinter.Entry(master, font = ("Helvetica", 12), textvariable  = inputMiFitMailText)
 
 labelPassword = tkinter.Label(master, text = "Password:", font = ("Helvetica", 12, "bold"))
-inputPassword = tkinter.Entry(master, font = ("Helvetica", 12))
+inputPassword = tkinter.Entry(master, font = ("Helvetica", 12), textvariable  = inputMiFitPasswordText)
 
 buttonStart = tkinter.Button(master, text = "Start", font = ("Helvetica", 12, "bold"), command = getInformation)
+
+buttonConfiguration = tkinter.Button(master, text = "Settings", font = ("Helvetica", 12), command = openConfiguration)
 
 labelCreator = tkinter.Label(master, text = "Marc Orfila Carreras", font = ("Helvetica", 8, "bold"), fg = "grey")
 
@@ -238,9 +383,11 @@ inputMail.place(x = 88, y = 205, height = 20, width = 310)
 labelPassword.place(x = 88, y = 240)
 inputPassword.place(x = 88, y = 275, height = 20, width = 310)
 
-buttonStart.place(x = 200, y = 320, height = 30, width = 100)
+buttonStart.place(x = 190, y = 320, height = 30, width = 120)
 
 labelLink.pack(side = tkinter.BOTTOM)
 labelCreator.pack(side = tkinter.BOTTOM)
+
+buttonConfiguration.place(x = 190, y = 390, height = 30, width = 120)
 
 master.mainloop()
