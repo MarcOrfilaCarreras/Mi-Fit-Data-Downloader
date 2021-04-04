@@ -25,10 +25,10 @@ It will be necessary to download the **drivers** for your web browser. To do thi
 ## ⚙️ Settings
 In the main window, you can select the **data** you want to download. Also, it is necessary to enter the **email** and **password** in their corresponding fields.
 
-![enter image description here](https://raw.githubusercontent.com/MarcOrfilaCarreras/Mi-Fit-Data-Downloader/main/_images/Mi-Fit%20Data%20Downloader_Main.PNG)
+![enter image description here](https://raw.githubusercontent.com/MarcOrfilaCarreras/Mi-Fit-Data-Downloader/main/_repository/Mi-Fit%20Data%20Downloader_Main.PNG)
 
 You will have to follow these steps every time you want to download the data. Unless, you configure it by default in **Settings**, where you will also have to configure the path of the **Web Driver**.
 
-![enter image description here](https://raw.githubusercontent.com/MarcOrfilaCarreras/Mi-Fit-Data-Downloader/main/_images/Mi-Fit%20Data%20Downloader_Settings.PNG)
+![enter image description here](https://raw.githubusercontent.com/MarcOrfilaCarreras/Mi-Fit-Data-Downloader/main/_repository/Mi-Fit%20Data%20Downloader_Settings.PNG)
 
 This will **save** the data forever.
